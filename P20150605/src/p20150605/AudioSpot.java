@@ -1,8 +1,18 @@
 package p20150605;
 
 import java.io.File;
+/**
+ * Esta clase es para gestionar cuñas de anuncios publicitarios en radio.
+ * @version 1.0.1
+ * @author Helena
+ */
 
 public class AudioSpot
+/**
+ * Cada objeto se referira a una cuña diferente.
+ * Permite programar la cuña dentro de una secuencia de audio clips y exportar 
+ * la cuña completa a un formato propio.
+ */
 {
     private File archivo;       // manejador para el archivo que contiene el audio (.mp3)
     private int duracion;       // duración del audio, en segundos
@@ -11,7 +21,9 @@ public class AudioSpot
     
     public String lasterrormsg;
     
+    
     public AudioSpot ()
+            
     {
         this.archivo = null;
         this.duracion = 0;
@@ -19,13 +31,21 @@ public class AudioSpot
         this.anunciante = "";
         this.lasterrormsg = "";
     }
-    
+    /**
+     * Establece los metadatos del spot
+     * @param producto Establece el nombre del producto
+     * @param anunciante Establece el nombre del anunciante
+     */
     public void setMetaDatos (String producto, String anunciante)
     {
         this.producto = producto;
         this.anunciante = anunciante;
     }
-    
+    /**
+     * Establece la duracion
+     * @param duracion Establece el tiempo del spot
+     * @throws IllegalArgumentException El spot no debe ser demasiado largo
+     */
     public void setDuracion(int duracion) throws IllegalArgumentException
     {
         if (duracion<0)
@@ -34,13 +54,21 @@ public class AudioSpot
             throw new IllegalArgumentException ("Duración demasiado larga");
         this.duracion = duracion;
     }
-    
+    /**
+     * Establece que exista el archivo, si no, lo crea.
+     * @param nombre_archivo Busca si existe el nobmre del archivo
+     * @return Devuelve true o false dependiendo de si existe o no
+     */
     public Boolean setArchivo(String nombre_archivo)
     {
         this.archivo = new File(nombre_archivo);
         return this.archivo.exists();
     }
-    
+    /**
+     * Recoge errores en el caso de que salga un numero entero negativo
+     * @param cola_reproduccion Es el conjunto de todos los atributos
+     * @return El mensaje de error del numero que devuelva
+     */
     public int ProgramaEnCola(Object cola_reproduccion)
     {
         // comprobamos previamente que no falte nada
